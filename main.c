@@ -73,7 +73,10 @@ int ReadButton(void)
     return button;
 }
 
-void main(void){
+// this is how u call an external file "test.c" 
+// void test(int); 
+
+int main(void){
 
     while(1){
 
@@ -85,14 +88,6 @@ void main(void){
             inputPassword();
             DisplayHex(inputPassword);
         }
-
-
-
-
-
-
     }
-
-
-
+    return 0;
 }
