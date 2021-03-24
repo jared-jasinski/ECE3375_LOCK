@@ -73,8 +73,9 @@ int ReadButton(void)
     return button;
 }
 
-// this is how u call an external file "test.c"
-// void test(int);
+// this is how u initialize an external file "Display.c"
+// void Display(int);
+// then call it "Display(1234);"
 
 int main(void)
 {
