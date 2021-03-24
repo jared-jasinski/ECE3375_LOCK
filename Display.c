@@ -3,7 +3,7 @@
 volatile int *hex0 = (int *)HEX3_HEX0_BASE;
 volatile int *hex1 = (int *)HEX5_HEX4_BASE;
 
-void test(int value)
+void Display(int value)
 {
     int decVals[10];
     decVals[0] = 0x3F;
