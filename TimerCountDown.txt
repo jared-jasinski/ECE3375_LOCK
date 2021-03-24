@@ -1,8 +1,0 @@
-void TimerCountDown(void)
-{
-    if (*TIMER == 0b11)
-    {
-        currentTimeHund++;
-        *TIMER = 0;
-    }
-}
