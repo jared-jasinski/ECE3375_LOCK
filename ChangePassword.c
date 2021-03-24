@@ -1,3 +1,4 @@
+#include "declarations.h"
 void ChangePassword(void)
 {
     nSet = 32;

@@ -1,3 +1,4 @@
+#include "declarations.h"
 int CheckPassword(int inputPassword)
 {
     if (inputPassword = password)

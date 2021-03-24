@@ -1,3 +1,4 @@
+#include "declarations.h"
 void ClearPassword()
 {
     nInput = 32;
