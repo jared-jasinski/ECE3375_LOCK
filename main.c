@@ -17,54 +17,54 @@ int password;
 int nInput = 32;
 int nSet = 32;
 
-    int lookUpTable[10];
-    lookUpTable[0] = 0x3F;
-    lookUpTable[1] = 0x6;
-    lookUpTable[2] = 0x5B;
-    lookUpTable[3] = 0x4F;
-    lookUpTable[4] = 0x66;
-    lookUpTable[5] = 0x6D;
-    lookUpTable[6] = 0x7D;
-    lookUpTable[7] = 0x7;
-    lookUpTable[8] = 0x7F;
-    lookUpTable[9] = 0x6F;
-
-void DisplayHex(int value)
-{
-
-}
+int lookUpTable[10];
+lookUpTable[0] = 0x3F;
+lookUpTable[1] = 0x6;
+lookUpTable[2] = 0x5B;
+lookUpTable[3] = 0x4F;
+lookUpTable[4] = 0x66;
+lookUpTable[5] = 0x6D;
+lookUpTable[6] = 0x7D;
+lookUpTable[7] = 0x7;
+lookUpTable[8] = 0x7F;
+lookUpTable[9] = 0x6F;
 
 //returns true if password is correct, 0 otherwise
-void CheckPassword(void inputPassword){
-    if(inputPassword = password){
+void CheckPassword(void inputPassword)
+{
+    if (inputPassword = password)
+    {
         return 1;
-    } else {
+    }
+    else
+    {
         return 0;
     }
 }
 
-
-void SetPassword{int value, int nSet){
+void SetPassword(int value, int nSet)
+{
     password += value << nSet;
-    nSet-=4;
+    nSet -= 4;
 }
 
-
-void InputPassword(int value,int nInput){
-passwordInput += value << nInput;
-nInput-=4;
+void InputPassword(int value, int nInput)
+{
+    passwordInput += value << nInput;
+    nInput -= 4;
 }
 
-void clearPassword(){
-    nInput=32;
+void clearPassword()
+{
+    nInput = 32;
     passwordInput &= 0x0000;
     DisplayHex(0);
 }
 
-void ChangePassword(void){
-    nSet=32;
+void ChangePassword(void)
+{
+    nSet = 32;
 }
-
 
 int ReadButton(void)
 {
@@ -73,18 +73,22 @@ int ReadButton(void)
     return button;
 }
 
-// this is how u call an external file "test.c" 
-// void test(int); 
+// this is how u call an external file "test.c"
+// void test(int);
 
-int main(void){
+int main(void)
+{
 
-    while(1){
+    while (1)
+    {
 
-        while(nSet !=0){
+        while (nSet != 0)
+        {
             SetPassword();
             DisplayHex(password);
         }
-        if(nInput!=0){
+        if (nInput != 0)
+        {
             inputPassword();
             DisplayHex(inputPassword);
         }
