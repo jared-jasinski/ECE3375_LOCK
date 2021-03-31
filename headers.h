@@ -5,6 +5,8 @@ extern int nInput;
 extern int nSet;
 extern int lookUpTable[10];
 extern int time;
+extern int timeSec;
+extern int timeMin;
 
 
 // prototyping function calls 

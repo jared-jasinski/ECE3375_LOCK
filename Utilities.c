@@ -1,12 +1,11 @@
 #include "headers.h"
+
 int ReadButtons(void)
 {
     volatile int button;
-    button = *(PUSH_BUTTON) &= 0b1111111111; //and operation with the button bits & 1111
+    button = *PUSH_BUTTON &= 0b1111111111; //and operation with the button bits & 1111
     return button;
 }
-
-volatile int *TIMER = (int *)TIMER_BASE;
 
 void TimerCountDown(void)
 {
@@ -17,16 +16,24 @@ void TimerCountDown(void)
     }
 }
 
+ void IncrementTime(void){
+       if(time > 99){
+           timeSec++;
+           time = 0;
+           if(timeSec >=60){
+               timeSec = 0;
+               timeMin++;
+           }
+       }
+ }
 
-volatile int *TIMER_LVL = (int *)(TIMER_BASE + 0x8);
-volatile int *TIMER_LVH = (int *)(TIMER_BASE + 0xc);
+
 
 void InitTimer(int interval)
 {
     *(TIMER_LVL) = interval;
     *(TIMER_LVH) = interval >> 16;
 }
-
 
 int Exponent(int base, int exponent)
 {

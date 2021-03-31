@@ -29,32 +29,48 @@ void Display(int value)
     return;
 }
 
-void DisplaySetPass(void){
-*HEX_47 = 0x6D797800; //SET
-
-*HEX_03 = 0x73776D6D; //PASS
+void DisplaySetPass(void)
+{
+    *hex1 = 0x6D797800; //SET
+    *hex0 = 0x73776D6D; //PASS
 }
 
-void DisplayWrongPass(void){
-*HEX_47 = 0xFFFFFFFF; //all on
-*HEX_03 = 0xFFFFFFFF; 
+void DisplayWrongPass(void)
+{
+    i = 0;
 
-//need timer to flash
+    for (i = 0; i < 10; i++)
+    {
 
-*HEX_47 = 0x00000000; //all on
-*HEX_03 = 0x00000000; 
+        *hex1 = 0xFFFFFFFF; //all on
+        *hex1 = 0xFFFFFFFF;
+        FlashDelay();
+        while (!DelayChecker())
+            ;
+        StopTimer();
+
+        *hex1 = 0x00000000; //all off
+        *hex0 = 0x00000000;
+        FlashDelay();
+        while (!DelayChecker())
+            ;
+        StopTimer();
+    }
 }
 
-void AccessGranted(void){
+void AccessGranted(void)
+{
 
-//ACCESS
-*HEX_03 = 0x39796D6D;
-*HEX_47 = 0x00007739;
+    //ACCESS
+    *hex0 = 0x39796D6D;
+    *hex1 = 0x00007739;
 
-//NEED TIMER BETWEEN WORDS
+    HalfSecondDelay();
+    while (!DelayChecker())
+        ;
+    StopTimer();
 
-//GRANTED
-*HEX_03 = 0x5478795E;
-*HEX_47 = 0x003D5077;
-
+    //GRANTED
+    *hex0 = 0x5478795E;
+    *hex1 = 0x003D5077;
 }
