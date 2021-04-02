@@ -3,57 +3,12 @@
 
 int lookUpTable[10] = {0x3F, 0x6, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x7, 0x7F, 0x6F};
 
-//returns true if password is correct, 0 otherwise
-int CheckPassword(int inputPassword)
-{
-    if (inputPassword = password)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-void SetPassword(int value, int nSet)
-{
-    password += value << nSet;
-    nSet -= 4;
-}
-
-void InputPassword(int value, int nInput)
-{
-    passwordInput += value << nInput;
-    nInput -= 4;
-}
-
-void clearPassword()
-{
-    nInput = 32;
-    passwordInput &= 0x0000;
-    DisplayHex(0);
-}
-
-void ChangePassword(void)
-{
-    nSet = 32;
-}
-
-int ReadButton(void)
-{
-    volatile int button;
-    button = *(PUSH_BUTTON) &= 0b1111111111; //and operation with the button bits & 1111
-    return button;
-}
-
 // this is how u initialize an external file "Display.c"
 // void Display(int);
 // then call it "Display(1234);"
 
 int main(void)
 {
-
     while (1)
     {
 
