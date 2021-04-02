@@ -1,5 +1,4 @@
 #include "headers.h"
-
 int ReadButtons(void)
 {
     volatile int button;
@@ -23,7 +22,6 @@ int DelayChecker(void){
             return 0;
         }
 }
-
 
 
  void IncrementTime(void){
