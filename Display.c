@@ -3,8 +3,6 @@
 volatile int *hex0 = (int *)HEX3_HEX0_BASE;
 volatile int *hex1 = (int *)HEX5_HEX4_BASE;
 
-int Exponent(int, int);
-
 void Display(int value)
 {
     volatile int i;
@@ -28,6 +26,11 @@ void Display(int value)
     *(hex0) = a;
     *(hex1) = b;
     return;
+}
+
+void UpdateDisplay(int digit) {
+    input *= 10;
+    input += digit;
 }
 
 void DisplaySetPass(void)
