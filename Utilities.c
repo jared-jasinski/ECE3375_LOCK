@@ -16,6 +16,16 @@ void TimerCountDown(void)
     }
 }
 
+int DelayChecker(void){
+        if (*TIMER == 0b11){
+            return 1;
+        }else{
+            return 0;
+        }
+}
+
+
+
  void IncrementTime(void){
        if(time > 99){
            timeSec++;
@@ -27,7 +37,19 @@ void TimerCountDown(void)
        }
  }
 
+ void HalfSecondDelay(void){
+     InitTimer(500000000);
+ }
 
+ void FlashDelay(void){
+     InitTimer(50000000);
+ }
+
+
+void StopTimer(void)
+{
+    *(TIMER_CONTROL) = 8;
+}
 
 void InitTimer(int interval)
 {
