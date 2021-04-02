@@ -1,6 +1,5 @@
 #include "headers.h"
 
-
 void ChangePassword()
 {
 //returns true if password is correct, 0 otherwise
@@ -24,7 +23,7 @@ void ClearPassword()
 {
     nInput = 32;
     passwordInput &= 0x0000;
-    DisplayHex(0);
+    Display(0);
 }
 
 void SetPassword(int value, int nSet)

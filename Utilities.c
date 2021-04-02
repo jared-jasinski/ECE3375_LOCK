@@ -1,4 +1,5 @@
 #include "headers.h"
+
 int ReadButtons(void)
 {
     volatile int button;
