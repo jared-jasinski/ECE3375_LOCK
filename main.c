@@ -1,6 +1,8 @@
 #include "address_map_arm.h"
 #include "headers.h"
 
+lookUpTable = {0x3F, 0x6, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x7, 0x7F, 0x6F};
+
 //returns true if password is correct, 0 otherwise
 int CheckPassword(int inputPassword)
 {

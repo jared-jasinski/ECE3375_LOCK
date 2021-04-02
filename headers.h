@@ -26,18 +26,7 @@ extern int password;
 extern int nInput = 32;
 extern int nSet = 32;
 
-int lookUpTable[10];
-lookUpTable[0] = 0x3F;
-lookUpTable[1] = 0x6;
-lookUpTable[2] = 0x5B;
-lookUpTable[3] = 0x4F;
-lookUpTable[4] = 0x66;
-lookUpTable[5] = 0x6D;
-lookUpTable[6] = 0x7D;
-lookUpTable[7] = 0x7;
-lookUpTable[8] = 0x7F;
-lookUpTable[9] = 0x6F;
-
+extern int lookUpTable[10];
 
 // prototyping function calls 
 void ChangePassword();
