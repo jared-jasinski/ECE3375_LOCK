@@ -29,22 +29,20 @@ volatile int *SWITCH_BANK = (int *)SW_BASE;
 
 void Display(int);
 void InputPassword(int, int);
+int readButtons();
 
 int main(void)
 {
     while (1)
     {
-        Display(12345);
-        while (nSet != 0)
-        {
-            //SetPassword();
-            // Display(password);
+        // test: display input from buttons
+        if (1) {
+            // passwordInput = readButtons();
+            UpdateDisplay(1);
+            Display(passwordInput);
         }
-        if (nInput != 0)
-        {
-            // InputPassword();
-            // Display();
-        }
+        volatile int i;
+        for (i = 0; i < 700000; i ++) ;
     }
     return 0;
 }

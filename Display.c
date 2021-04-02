@@ -29,8 +29,8 @@ void Display(int value)
 }
 
 void UpdateDisplay(int digit) {
-    input *= 10;
-    input += digit;
+    passwordInput *= 10;
+    passwordInput += digit;
 }
 
 void DisplaySetPass(void)
