@@ -2,7 +2,7 @@
 volatile int *hex0 = (int *)HEX3_HEX0_BASE;
 volatile int *hex1 = (int *)HEX5_HEX4_BASE;
 
-int Exponent(int);
+int Exponent(int, int);
 
 void Display(int value)
 {
