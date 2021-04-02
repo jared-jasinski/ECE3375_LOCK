@@ -1,6 +1,9 @@
 #include "headers.h"
+
+
 void ChangePassword()
 {
+//returns true if password is correct, 0 otherwise
     nSet = 32;
     password &= 0x00000000;
 
