@@ -3,3 +3,4 @@
 *.srec
 *.amp
 makefile
+.vscode/settings.json
