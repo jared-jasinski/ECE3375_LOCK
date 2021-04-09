@@ -154,12 +154,3 @@ int return8(int temp)
         return return8(temp);
     }
 }
-
-int main(void)
-{
-
-    while (1)
-    {
-        DisplayHex(return8(0));
-    }
-}
