@@ -1,9 +1,12 @@
 #include "headers.h"
 
-int ReadButton(void)
+int ReadButton(int index)
 {
+    /**
+     * reads the value of a single button at the specified index
+     */
     volatile int button;
-    button = *(PUSH_BUTTON) &= 0b1111111111; //and operation with the button bits & 1111
+    button = *(PUSH_BUTTON) &= 1 << index;
     return button;
 }
 
@@ -69,7 +72,6 @@ int buttonOut(int in)
     }
 }
 
-
 int CountDigits(int n)
 {
     /** 
@@ -108,15 +110,54 @@ int return8(int temp)
         in = readIn();
     }
 
-    if (digits(temp) == 8)
+    if (CountDigits(temp) == 8)
     {
         return temp;
     }
     else
     {
         temp = temp * 10 + in;
-        DisplayHex(temp);
 
         return return8(temp);
     }
+}
+
+int UpdateButtons(void)
+{
+    // update level
+    volatile int i;
+    for (i = 0; i < 32; i++)
+    {
+        if (ReadButton(i))
+        {   
+            // buttonDown
+            if (!buttonPushed[i]) {
+                buttonDown[i] = 1;
+            }
+            else {
+                buttonDown[i] = 0;
+                buttonUp[i] = 0;
+            }
+            buttonPushed[i] = 1;
+        }
+        else
+        {
+            // buttonUp
+            if (buttonPushed[i])
+            {
+                buttonUp[i] = 1;
+            }
+            else
+            {
+                buttonDown[i] = 0;
+                buttonUp[i] = 0;
+            }
+            buttonPushed[i] = 0;
+        }
+    }
+
+    // if (buttonDown) buttonPushed = 1;
+    // else if (buttonUp) buttonPushed = 0;
+
+    // update button edges
 }
