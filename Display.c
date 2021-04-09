@@ -3,11 +3,13 @@
 volatile int *hex0 = (int *)HEX3_HEX0_BASE;
 volatile int *hex1 = (int *)HEX5_HEX4_BASE;
 
-int GetPasswordInput() {
+int GetPasswordInput()
+{
     return passwordInput;
 }
 
-void ClearDisplay() {
+void ClearDisplay()
+{
     /**
      * clears 8 hexdisplays to show nothing
      */
@@ -45,15 +47,6 @@ void Display(int value)
     return;
 }
 
-void UpdateDisplay(int digit) {
-    /**
-     * takes a single digit and pushes to the right of the display;
-     * preserving previously inputted digits
-     */
-    passwordInput *= 10;
-    passwordInput += digit;
-}
-
 void DisplaySetPass(void)
 {
     *hex1 = 0x6D797800; //SET
@@ -68,10 +61,11 @@ void DisplayWrongPass(void)
 
         *hex1 = 0xFFFFFFFF; //all on
         *hex0 = 0xFFFFFFFF;
-        
+
         // temp solution
         volatile int i;
-        for (i = 0; i < 200000; i ++) ;
+        for (i = 0; i < 200000; i++)
+            ;
 
         // TODO: fix timer
         // FlashDelay();
@@ -83,7 +77,8 @@ void DisplayWrongPass(void)
         *hex0 = 0x00000000;
 
         // temp solution
-        for (i = 0; i < 200000; i ++) ;
+        for (i = 0; i < 200000; i++)
+            ;
 
         // TODO: fix timer
         // FlashDelay();
@@ -93,14 +88,14 @@ void DisplayWrongPass(void)
     }
 }
 
-void AccessGranted(void)
+void DisplayAccessGranted(void)
 {
 
     //ACCESS
     *hex0 = 0x39796D6D;
     *hex1 = 0x00007739;
 
-    // TODO: fix timer 
+    // TODO: fix timer
     // HalfSecondDelay();
     // while (!DelayChecker())
     //     ;
@@ -108,9 +103,20 @@ void AccessGranted(void)
 
     // temp solution
     volatile int i;
-    for (i = 0; i < 700000; i ++) ;
+    for (i = 0; i < 700000; i++)
+        ;
 
     //GRANTED
     *hex0 = 0x5478795E;
     *hex1 = 0x003D5077;
+}
+
+void UpdateDisplay(int digit)
+{
+    /**
+     * takes a single digit and pushes to the right of the display;
+     * preserving previously inputted digits
+     */
+    passwordInput *= 10;
+    passwordInput += digit;
 }
