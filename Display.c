@@ -77,6 +77,28 @@ void DisplayWrongPass(void)
     }
 }
 
+void YouEnteredTheWrongPassIdiot(void){
+
+    //LOCKED               
+    *hex0 = 0x3975795E;
+    *hex1 = 0x0000385C;
+    volatile int i;
+    for (i = 0; i < 700000; i++)
+        ;
+    //OUT
+    *hex0 = 0x005C3E78;
+    *hex1 = 0x00000000;
+    for (i = 0; i < 700000; i++)
+        ;
+    //30 SEC
+    *hex0 = 0x006D7939;
+    *hex1 = 0x00004F3F;
+    for (i = 0; i < 700000; i++)
+        ;
+}
+
+
+
 void DisplayAccessGranted(void)
 {
 
