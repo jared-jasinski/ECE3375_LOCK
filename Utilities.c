@@ -29,21 +29,24 @@ int DelayChecker(void){
        if(time > 99){
            timeSec++;
            time = 0;
-           if(timeSec >=60){
+           if(timeSec >=30){
                timeSec = 0;
-               timeMin++;
            }
        }
  }
+void StartTimer(void)
+{
+    InitTimer(1000000);
+    //toggles start bit
+    *(TIMER_CONTROL) = 4;
+}
 
- void HalfSecondDelay(void){
-     InitTimer(500000000);
- }
-
- void FlashDelay(void){
-     InitTimer(50000000);
- }
-
+void disableTimer(int nSeconds)
+{
+    StartTimer(); //starts the timer
+    while (timeSec < 30)
+    ;//30 second lock out in the while loop
+}
 
 void StopTimer(void)
 {
