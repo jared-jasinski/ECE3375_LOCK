@@ -24,7 +24,6 @@ int DelayChecker(void){
         }
 }
 
-
  void IncrementTime(void){
        if(time > 99){
            timeSec++;
@@ -34,6 +33,7 @@ int DelayChecker(void){
            }
        }
  }
+
 void StartTimer(void)
 {
     InitTimer(1000000);
@@ -46,11 +46,6 @@ void disableTimer(int nSeconds)
     StartTimer(); //starts the timer
     while (timeSec < 30)
     ;//30 second lock out in the while loop
-}
-
-void StopTimer(void)
-{
-    *(TIMER_CONTROL) = 8;
 }
 
 void InitTimer(int interval)
