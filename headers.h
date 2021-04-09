@@ -32,6 +32,7 @@ void TimerCountDown();
 void InitTimer();
 int Exponent();
 void Display();
+void UpdateDisplay(int);
 void DisplaySetPass();
 void DisplayWrongPass();
 void AccessGranted();

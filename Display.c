@@ -3,14 +3,31 @@
 volatile int *hex0 = (int *)HEX3_HEX0_BASE;
 volatile int *hex1 = (int *)HEX5_HEX4_BASE;
 
-int Exponent(int, int);
+int GetPasswordInput()
+{
+    return passwordInput;
+}
+
+void ClearDisplay()
+{
+    /**
+     * clears 8 hexdisplays to show nothing
+     */
+    *hex0 = 0x00000000;
+    *hex1 = 0x00000000;
+}
 
 void Display(int value)
 {
+    /**
+     * displays up to an 8-digit value;
+     * assumes "value" is in base10
+     */
+
     volatile int i;
     volatile int a = 0x0;
     volatile int b = 0x0;
-    for (i = 5; i >= 0; i--)
+    for (i = 7; i >= 0; i--)
     {
         int digit = (value % Exponent(10, i + 1)) / (Exponent(10, i));
 
@@ -38,40 +55,68 @@ void DisplaySetPass(void)
 
 void DisplayWrongPass(void)
 {
-    int i = 0;
-
-    for (i = 0; i < 10; i++)
+    volatile int j;
+    for (j = 0; j < 5; j++)
     {
 
         *hex1 = 0xFFFFFFFF; //all on
-        *hex1 = 0xFFFFFFFF;
-        FlashDelay();
-        while (!DelayChecker())
+        *hex0 = 0xFFFFFFFF;
+
+        // temp solution
+        volatile int i;
+        for (i = 0; i < 200000; i++)
             ;
-        StopTimer();
+
+        // TODO: fix timer
+        // FlashDelay();
+        // while (!DelayChecker())
+        //     ;
+        // StopTimer();
 
         *hex1 = 0x00000000; //all off
         *hex0 = 0x00000000;
-        FlashDelay();
-        while (!DelayChecker())
+
+        // temp solution
+        for (i = 0; i < 200000; i++)
             ;
-        StopTimer();
+
+        // TODO: fix timer
+        // FlashDelay();
+        // while (!DelayChecker())
+        //     ;
+        // StopTimer();
     }
 }
 
-void AccessGranted(void)
+void DisplayAccessGranted(void)
 {
 
     //ACCESS
     *hex0 = 0x39796D6D;
     *hex1 = 0x00007739;
 
-    HalfSecondDelay();
-    while (!DelayChecker())
+    // TODO: fix timer
+    // HalfSecondDelay();
+    // while (!DelayChecker())
+    //     ;
+    // StopTimer();
+
+    // temp solution
+    volatile int i;
+    for (i = 0; i < 700000; i++)
         ;
-    StopTimer();
 
     //GRANTED
     *hex0 = 0x5478795E;
     *hex1 = 0x003D5077;
+}
+
+void UpdateDisplay(int digit)
+{
+    /**
+     * takes a single digit and pushes to the right of the display;
+     * preserving previously inputted digits
+     */
+    passwordInput *= 10;
+    passwordInput += digit;
 }
