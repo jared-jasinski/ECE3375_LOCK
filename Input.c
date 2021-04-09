@@ -84,7 +84,7 @@ int CountDigits(int n)
     return count;
 }
 
-int readIn()
+int readIn(void)
 {
     volatile int *buttons = KEY_BASE; // pointer pointing to the buttons
     int output;
