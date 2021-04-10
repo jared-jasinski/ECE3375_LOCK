@@ -105,7 +105,7 @@ int main(void)
         else if (state == 3)
         {
         }
-
+        
         DisplayState(state);
     }
     return 0;
