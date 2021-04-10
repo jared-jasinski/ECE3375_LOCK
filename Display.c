@@ -64,29 +64,40 @@ void DisplayWrongPass(void)
 
         // temp solution
         volatile int i;
-        for (i = 0; i < 200000; i++)
-            ;
-
-        // TODO: fix timer
-        // FlashDelay();
-        // while (!DelayChecker())
-        //     ;
-        // StopTimer();
+           for (i = 0; i < 200000; i++)
+      ;
 
         *hex1 = 0x00000000; //all off
         *hex0 = 0x00000000;
 
-        // temp solution
         for (i = 0; i < 200000; i++)
             ;
 
-        // TODO: fix timer
-        // FlashDelay();
-        // while (!DelayChecker())
-        //     ;
-        // StopTimer();
+
     }
 }
+
+void YouEnteredTheWrongPassIdiot(void){
+
+    //LOCKED               
+    *hex0 = 0x3975795E;
+    *hex1 = 0x0000385C;
+    volatile int i;
+    for (i = 0; i < 700000; i++)
+        ;
+    //OUT
+    *hex0 = 0x005C3E78;
+    *hex1 = 0x00000000;
+    for (i = 0; i < 700000; i++)
+        ;
+    //30 SEC
+    *hex0 = 0x006D7939;
+    *hex1 = 0x00004F3F;
+    for (i = 0; i < 700000; i++)
+        ;
+}
+
+
 
 void DisplayAccessGranted(void)
 {
@@ -95,13 +106,7 @@ void DisplayAccessGranted(void)
     *hex0 = 0x39796D6D;
     *hex1 = 0x00007739;
 
-    // TODO: fix timer
-    // HalfSecondDelay();
-    // while (!DelayChecker())
-    //     ;
-    // StopTimer();
-
-    // temp solution
+    //delay loop
     volatile int i;
     for (i = 0; i < 700000; i++)
         ;

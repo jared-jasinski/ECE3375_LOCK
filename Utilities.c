@@ -16,38 +16,31 @@ void TimerCountDown(void)
     }
 }
 
-int DelayChecker(void){
-        if (*TIMER == 0b11){
-            return 1;
-        }else{
-            return 0;
+
+void IncrementTime(void)
+{
+    if (time > 99)
+    {
+        timeSec++;
+        time = 0;
+        if (timeSec >= 30)
+        {
+            timeSec = 0;
         }
+    }
 }
 
-
- void IncrementTime(void){
-       if(time > 99){
-           timeSec++;
-           time = 0;
-           if(timeSec >=60){
-               timeSec = 0;
-               timeMin++;
-           }
-       }
- }
-
- void HalfSecondDelay(void){
-     InitTimer(500000000);
- }
-
- void FlashDelay(void){
-     InitTimer(50000000);
- }
-
-
-void StopTimer(void)
+void StartTimer(void)
 {
-    *(TIMER_CONTROL) = 8;
+    //toggles start bit
+    *(TIMER_CONTROL) = 4;
+}
+
+void disableTimer(int nSeconds)
+{
+    StartTimer(); //starts the timer
+    while (timeSec < 30)
+    YouEnteredTheWrongPassIdiot(); //30 second lock out in the while loop
 }
 
 void InitTimer(int interval)
