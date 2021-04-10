@@ -122,7 +122,7 @@ int return8(int temp)
     }
 }
 
-int UpdateButtons(void)
+void UpdateButtons(void)
 {
     // update level
     volatile int i;
@@ -155,9 +155,5 @@ int UpdateButtons(void)
             buttonPushed[i] = 0;
         }
     }
-
-    // if (buttonDown) buttonPushed = 1;
-    // else if (buttonUp) buttonPushed = 0;
-
     // update button edges
 }
