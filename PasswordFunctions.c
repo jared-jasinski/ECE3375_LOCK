@@ -1,12 +1,5 @@
 #include "headers.h"
 
-void ChangePassword(void)
-{
-//returns true if password is correct, 0 otherwise
-    nSet = 32;
-    password &= 0x00000000;
-
-}
 int CheckPassword(int inputPassword, int *passwordPointer)
 {
     if (inputPassword == *passwordPointer)

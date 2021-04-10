@@ -16,7 +16,6 @@ void TimerCountDown(void)
     }
 }
 
-
 void IncrementTime(void)
 {
     if (time > 99)
@@ -36,12 +35,11 @@ void StartTimer(void)
     *(TIMER_CONTROL) = 4;
 }
 
-
 void disableTimer(int nSeconds)
 {
     StartTimer(); //starts the timer
     while (timeSec < 30)
-    YouEnteredTheWrongPassIdiot(); //30 second lock out in the while loop
+        YouEnteredTheWrongPassIdiot(); //30 second lock out in the while loop
 }
 
 void InitTimer(int interval)
