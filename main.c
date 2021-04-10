@@ -5,10 +5,13 @@ volatile int passwordInput = 0;
 volatile int password = 0;
 volatile int nInput = 0;
 volatile int nSet = 0;
-volatile int lookUpTable[10] = {0x3F, 0x6, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x7, 0x7F, 0x6F}; 
+volatile int lookUpTable[10] = {0x3F, 0x6, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x7, 0x7F, 0x6F};
 volatile int time = 0;
 volatile int timeSec = 0;
 volatile int timeMin = 0;
+volatile int buttonDown[32] = {0}; // edges and levels
+volatile int buttonUp[32] = {0};
+volatile int buttonPushed[32] = {0};
 
 volatile int *HEX_SEC_HUND = (int *)HEX3_HEX0_BASE; //hex 0-3
 volatile int *HEX_MINS = (int *)HEX5_HEX4_BASE;     //hex 4-5
