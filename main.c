@@ -6,7 +6,7 @@ volatile int password = 0;
 volatile int nInput = 0;
 volatile int nSet = 0;
 volatile int lookUpTable[10] = {0x3F, 0x6, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x7, 0x7F, 0x6F};
-;
+
 volatile int time = 0;
 volatile int timeSec = 0;
 volatile int timeMin = 0;
@@ -37,24 +37,9 @@ int readButtons();
 
 int main(void)
 {
-    Display(1234);
     while (1)
     {
-        UpdateButtons();
-        volatile int bDown = 0;
-        volatile int i;
-        for (i = 0; i < 32; i++)
-        {
-            if (buttonDown[i])
-            {
-                bDown = 1;
-                break;
-            }
-        }
-        Display(ReadButton(0));
-        i = 0;
-        // for (i = 0; i < 700000; i++)
-        //     ;
+        
     }
     return 0;
 }
