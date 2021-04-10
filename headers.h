@@ -26,7 +26,7 @@ extern volatile int *SWITCH_BANK;
 
 // prototyping function calls
 void ChangePassword();
-int CheckPassword(int);
+int CheckPassword(int, int*);
 void ClearPassword();
 void SetPassword(int, int);
 void InputPassword(int, int);
