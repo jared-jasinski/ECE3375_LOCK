@@ -12,6 +12,7 @@ volatile int timeMin = 0;
 volatile int buttonDown[32] = {0}; // edges and levels
 volatile int buttonUp[32] = {0};
 volatile int buttonPushed[32] = {0};
+volatile int state = 0;
 
 volatile int *HEX_SEC_HUND = (int *)HEX3_HEX0_BASE; //hex 0-3
 volatile int *HEX_MINS = (int *)HEX5_HEX4_BASE;     //hex 4-5
@@ -33,22 +34,50 @@ volatile int *SWITCH_BANK = (int *)SW_BASE;
 void Display(int);
 void InputPassword(int, int);
 int readButtons();
+void DisplayState(int);
 
 int main(void)
 {
     InitTimer(1000000);
     while (1)
     {
-        // test: display input from buttons
-        if (1)
+        // locked state
+        if (state == 0)
         {
-            // passwordInput = readButtons();
-            UpdateDisplay(1);
-            Display(passwordInput);
         }
-        volatile int i;
-        for (i = 0; i < 700000; i++)
-            ;
+        // unlocked
+        else if (state == 1)
+        {
+        }
+        // reset password state
+        else if (state == 2)
+        {
+        }
+        // timeout state
+        else if (state == 3)
+        {
+        }
+        DisplayState(state);
     }
     return 0;
+}
+
+void DisplayState(int state)
+{
+    // locked state
+    if (state == 0)
+    {
+    }
+    // unlocked
+    else if (state == 1)
+    {
+    }
+    // reset password state
+    else if (state == 2)
+    {
+    }
+    // timeout state
+    else if (state == 3)
+    {
+    }
 }

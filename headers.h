@@ -11,6 +11,7 @@ extern volatile int wrongAttempts;
 extern volatile int buttonDown[32]; // edges and levels
 extern volatile int buttonUp[32];
 extern volatile int buttonPushed[32];
+extern volatile int state;
 
 extern volatile int *HEX_SEC_HUND; //hex 0-3
 extern volatile int *HEX_MINS;     //hex 4-5
