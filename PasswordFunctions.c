@@ -1,15 +1,15 @@
 #include "headers.h"
 
-void ChangePassword()
+void ChangePassword(void)
 {
 //returns true if password is correct, 0 otherwise
     nSet = 32;
     password &= 0x00000000;
 
 }
-int CheckPassword(int inputPassword)
+int CheckPassword(int inputPassword, int *passwordPointer)
 {
-    if (inputPassword = password)
+    if (inputPassword == *passwordPointer)
     {
         return 1;
     }
@@ -19,7 +19,7 @@ int CheckPassword(int inputPassword)
     }
 }
 
-void ClearPassword()
+void ClearPassword(void)
 {
     nInput = 32;
     passwordInput &= 0x0000;
@@ -42,8 +42,8 @@ if(mode == 10){
     *LED_ptr &= 0x01;
     changePass(passPtr);
     *LED_ptr = 0x00;
+    }
 }
-
 /* not sure if these are still used so i'm commenting it out
 void SetPassword(int value, int nSet)
 {

@@ -36,6 +36,7 @@ void StartTimer(void)
     *(TIMER_CONTROL) = 4;
 }
 
+
 void disableTimer(int nSeconds)
 {
     StartTimer(); //starts the timer
