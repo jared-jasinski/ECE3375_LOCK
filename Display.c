@@ -77,6 +77,11 @@ void DisplayWrongPass(void)
     }
 }
 
+void DisplayLocked(void){
+        *hex0 = 0x3975795E;
+        *hex1 = 0x0000385C;
+}
+
 void YouEnteredTheWrongPassIdiot(void){
 
     //LOCKED               

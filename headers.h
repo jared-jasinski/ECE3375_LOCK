@@ -7,6 +7,7 @@ extern volatile int lookUpTable[10];
 extern volatile int time;
 extern volatile int timeSec;
 extern volatile int timeMin;
+extern volatile int wrongAttempts;
 extern volatile int buttonDown[32]; // edges and levels
 extern volatile int buttonUp[32];
 extern volatile int buttonPushed[32];
