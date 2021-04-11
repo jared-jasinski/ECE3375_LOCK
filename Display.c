@@ -19,39 +19,26 @@ void ClearDisplay()
 
 void LightShow()
 {
-    volatile int i;
-    volatile int j;
+    int i;
+    for (i = 0; i < 4; i++)
+    {
+        volatile int k;
+        volatile int l;
 
-    for (i = 0; i < 32; i++)
-    {
-        volatile int delay;
-        for (delay = 0; delay < 100000; delay++)
-            ;
-        *LEDS += 1 << i;
-    }
-    for (j = 0; j < 32; j++)
-    {
-        volatile int delay;
-        for (delay = 0; delay < 100000; delay++)
-            ;
-        *LEDS -= j <<= 1;
-    }
-
-    volatile int k;
-    volatile int l;
-    for (k = 0; k < 32; k++)
-    {
-        volatile int delay;
-        for (delay = 0; delay < 100000; delay++)
-            ;
-        *LEDS = 1 << k;
-    }
-       for (l = 32; l > 32; l--)
-    {
-        volatile int delay;
-        for (delay = 0; delay < 100000; delay++)
-            ;
-        *LEDS = 1 << l;
+        for (k = 0; k < 32; k++)
+        {
+            volatile int delay;
+            for (delay = 0; delay < 10000; delay++)
+                ;
+            *LEDS = 1 << k;
+        }
+        for (l = 32; l > 0; l--)
+        {
+            volatile int delay;
+            for (delay = 0; delay < 10000; delay++)
+                ;
+            *LEDS = 1 << l;
+        }
     }
 }
 
