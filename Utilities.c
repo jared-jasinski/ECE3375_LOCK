@@ -16,13 +16,23 @@ void TimerCountDown(void)
     }
 }
 
+void WrongPassTracker(void)
+{
+    if (wrongAttempts < 3)
+        return;
+    else
+    {
+        disableTimer();
+    }
+}
+
 void IncrementTime(void)
 {
     if (time > 99)
     {
         timeSec++;
         time = 0;
-        if (timeSec >= 30)
+        if (timeSec >= 31)
         {
             timeSec = 0;
         }
@@ -35,7 +45,7 @@ void StartTimer(void)
     *(TIMER_CONTROL) = 4;
 }
 
-void disableTimer(int nSeconds)
+void disableTimer(void)
 {
     StartTimer(); //starts the timer
     while (timeSec < 30)
