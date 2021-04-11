@@ -1,9 +1,9 @@
 #include "headers.h"
 
 
-int CheckPassword(int inputPassword, int *passwordPointer)
+int CheckPassword(void)
 {
-    if (inputPassword == *passwordPointer)
+    if (passwordInput == password)
     {
         return 1;
     }

@@ -2,7 +2,7 @@
 #include "headers.h"
 
 volatile int passwordInput = 0;
-volatile int password = 0;
+volatile int password = 12345678;
 volatile int nInput = 0;
 volatile int nSet = 0;
 volatile int lookUpTable[10] = {0x3F, 0x6, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x7, 0x7F, 0x6F};
@@ -12,7 +12,9 @@ volatile int timeMin = 0;
 volatile int buttonDown[32] = {0}; // edges and levels
 volatile int buttonUp[32] = {0};
 volatile int buttonPushed[32] = {0};
-volatile int state = 2;
+volatile int state = 0;
+volatile int passwordError = 0;
+volatile int passwordAccept = 0;
 
 volatile int *HEX_SEC_HUND = (int *)HEX3_HEX0_BASE; //hex 0-3
 volatile int *HEX_MINS = (int *)HEX5_HEX4_BASE;     //hex 4-5
@@ -46,7 +48,26 @@ int main(void)
         // locked state
         if (state == 0)
         {
-
+            if (CountDigits(GetPasswordInput()) == 8)
+            {
+                if (!CheckPassword()) {
+                    passwordError = 1;
+                    passwordInput = 0;
+                }
+                else {
+                    DisplayAccessGranted();
+                    ShortDelay();
+                    state = 1;
+                }
+            }
+            volatile int i;
+            for (i = 0; i < 9; i++)
+            {
+                if (buttonDown[i])
+                {
+                    UpdateDisplay(i + 1);
+                }
+            }
         }
 
         // unlocked
@@ -57,7 +78,8 @@ int main(void)
         // reset password state
         else if (state == 2)
         {
-            if (CountDigits(GetPasswordInput()) == 8) {
+            if (CountDigits(GetPasswordInput()) == 8)
+            {
                 password = passwordInput;
                 passwordInput = 0;
                 ShortDelay();
@@ -89,8 +111,17 @@ void DisplayState(int state)
     // locked state
     if (state == 0)
     {
-        if (passwordInput == 0) Display(42069);
-        else Display(passwordInput);
+        if (passwordInput == 0 && !passwordError)
+            DisplayLocked();
+        else
+        {
+            if (passwordError) {
+                DisplayWrongPass();
+                ShortDelay();
+                passwordError = 0;
+            }
+            else Display(passwordInput);
+        }
     }
 
     // unlocked
@@ -101,8 +132,10 @@ void DisplayState(int state)
     // reset password state
     else if (state == 2)
     {
-        if (passwordInput == 0) DisplaySetPass();
-        else Display(passwordInput);
+        if (passwordInput == 0)
+            DisplaySetPass();
+        else
+            Display(passwordInput);
     }
 
     // timeout state
