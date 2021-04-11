@@ -46,3 +46,4 @@ void WrongPassTracker();
 void DisableTimer();
 void ShortDelay(void);
 void DisplayLocked(void);
+void ShortDelay(void);
