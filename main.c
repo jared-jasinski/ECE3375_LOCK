@@ -20,6 +20,7 @@ volatile int wrongAttempts = 0;
 volatile int *HEX_SEC_HUND = (int *)HEX3_HEX0_BASE; //hex 0-3
 volatile int *HEX_MINS = (int *)HEX5_HEX4_BASE;     //hex 4-5
 volatile int *PUSH_BUTTON = (int *)KEY_BASE;
+volatile int *LEDS = (int *)LED_BASE;
 
 //Addresses for timer controls
 volatile int *TIMER = (int *)TIMER_BASE;
@@ -40,6 +41,7 @@ int readButtons();
 void DisplayState(int);
 void WrongPassTracker(void);
 void disableTimer(void);
+void LightShow(void);
 
 int main(void)
 {
@@ -63,6 +65,7 @@ int main(void)
                 else {
                     DisplayAccessGranted();
                     ShortDelay();
+                    ClearDisplay();
                     state = 1;
                 }
             }
@@ -133,6 +136,7 @@ void DisplayState(int state)
     // unlocked
     else if (state == 1)
     {
+        LightShow();
     }
 
     // reset password state
