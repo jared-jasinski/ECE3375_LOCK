@@ -16,8 +16,8 @@ void TimerCountDown(void)
     {
         time++;
     }
-        *TIMER = 0x0;
-        StartTimer();
+    *TIMER = 0x0;
+    StartTimer();
 }
 
 void WrongPassTracker(void)
@@ -48,13 +48,15 @@ void StartTimer(void)
 
 void disableTimer(void)
 {
+    time = 0;
     InitTimer();
     StartTimer(); //starts the timer
+    timeSec = 0;
     while (timeSec < 30)
     {
         IncrementTime();
         TimerCountDown();
-        YouEnteredTheWrongPassIdiot(); //30 second lock out in the while loop
+        YouEnteredTheWrongPassIdiot(timeSec); //30 second lock out in the while loop
     }
     timeSec = 0;
 }
