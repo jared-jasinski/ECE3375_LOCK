@@ -55,14 +55,16 @@ int main(void)
         {
             if (CountDigits(GetPasswordInput()) == 8)
             {
-                if (!CheckPassword()) {
+                if (!CheckPassword())
+                {
                     passwordError = 1;
                     passwordInput = 0;
-                    wrongAttempts ++;
+                    wrongAttempts++;
                     WrongPassTracker();
-                    passwordError = 0;
                 }
-                else {
+                else
+                {
+                    passwordInput = 0;
                     DisplayAccessGranted();
                     ShortDelay();
                     ClearDisplay();
@@ -82,6 +84,11 @@ int main(void)
         // unlocked
         else if (state == 1)
         {
+            wrongAttempts = 0;
+            if (buttonDown[0])
+                state = 0;
+            else if (buttonDown[1])
+                state = 2;
         }
 
         // reset password state
@@ -108,7 +115,7 @@ int main(void)
         else if (state == 3)
         {
         }
-        
+
         DisplayState(state);
     }
     return 0;
@@ -120,23 +127,21 @@ void DisplayState(int state)
     // locked state
     if (state == 0)
     {
-        if (passwordInput == 0 && !passwordError)
-            DisplayLocked();
-        else
+        if (passwordError)
         {
-            if (passwordError) {
-                DisplayWrongPass();
-                ShortDelay();
-                passwordError = 0;
-            }
-            else Display(passwordInput);
+            DisplayWrongPass();
+            ShortDelay();
+            passwordError = 0;
         }
+        else if (passwordInput == 0 && !passwordError)
+            DisplayLocked();
+        else Display(passwordInput);
     }
 
     // unlocked
     else if (state == 1)
     {
-        LightShow();
+        // LightShow();
     }
 
     // reset password state
