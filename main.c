@@ -12,7 +12,7 @@ volatile int timeMin = 0;
 volatile int buttonDown[32] = {0}; // edges and levels
 volatile int buttonUp[32] = {0};
 volatile int buttonPushed[32] = {0};
-volatile int state = 0;
+volatile int state = 1;
 volatile int passwordError = 0;
 volatile int passwordAccept = 0;
 volatile int wrongAttempts = 0;
@@ -20,8 +20,6 @@ volatile int wrongAttempts = 0;
 volatile int *HEX_SEC_HUND = (int *)HEX3_HEX0_BASE; //hex 0-3
 volatile int *HEX_MINS = (int *)HEX5_HEX4_BASE;     //hex 4-5
 volatile int *PUSH_BUTTON = (int *)KEY_BASE;
-volatile int *LEDS = (int *)LED_BASE;
-
 volatile int *LEDS = (int *)LED_BASE;
 
 //Addresses for timer controls
@@ -86,11 +84,18 @@ int main(void)
         // unlocked
         else if (state == 1)
         {
+            ClearDisplay();
             wrongAttempts = 0;
             if (buttonDown[0])
+            {
                 state = 0;
+                ClearLED();
+            }
             else if (buttonDown[1])
+            {
                 state = 2;
+                ClearLED();
+            }
         }
 
         // reset password state
@@ -137,13 +142,14 @@ void DisplayState(int state)
         }
         else if (passwordInput == 0 && !passwordError)
             DisplayLocked();
-        else Display(passwordInput);
+        else
+            Display(passwordInput);
     }
 
     // unlocked
     else if (state == 1)
     {
-        // LightShow();
+        LightShow();
     }
 
     // reset password state
