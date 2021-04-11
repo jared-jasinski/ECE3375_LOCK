@@ -17,6 +17,8 @@ volatile int *HEX_SEC_HUND = (int *)HEX3_HEX0_BASE; //hex 0-3
 volatile int *HEX_MINS = (int *)HEX5_HEX4_BASE;     //hex 4-5
 volatile int *PUSH_BUTTON = (int *)KEY_BASE;
 
+volatile int *LEDS = (int *)LED_BASE;
+
 //Addresses for timer controls
 volatile int *TIMER = (int *)TIMER_BASE;
 volatile int *TIMER_CONTROL = (int *)(TIMER_BASE + 0x4);
