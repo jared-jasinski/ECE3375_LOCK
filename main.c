@@ -15,7 +15,7 @@ volatile int buttonPushed[32] = {0};
 volatile int state = 0;
 volatile int passwordError = 0;
 volatile int passwordAccept = 0;
-volatile int wrongAttempts = 0;
+volatile int wrongAttempts = 2;
 
 volatile int *HEX_SEC_HUND = (int *)HEX3_HEX0_BASE; //hex 0-3
 volatile int *HEX_MINS = (int *)HEX5_HEX4_BASE;     //hex 4-5
@@ -38,6 +38,8 @@ void Display(int);
 void InputPassword(int, int);
 int readButtons();
 void DisplayState(int);
+void WrongPassTracker(void);
+void disableTimer(void);
 
 int main(void)
 {
@@ -56,6 +58,7 @@ int main(void)
                     passwordInput = 0;
                     wrongAttempts ++;
                     WrongPassTracker();
+                    passwordError = 0;
                 }
                 else {
                     DisplayAccessGranted();

@@ -1,5 +1,8 @@
 #include "headers.h"
 
+void disableTimer(void);
+void StartTimer(void);
+
 int ReadButtons(void)
 {
     volatile int button;
@@ -9,11 +12,12 @@ int ReadButtons(void)
 
 void TimerCountDown(void)
 {
-    if (*TIMER == 0b11)
+    if ((*TIMER & 0x1) == 0b1)
     {
         time++;
-        *TIMER = 0;
     }
+        *TIMER = 0x0;
+        StartTimer();
 }
 
 void WrongPassTracker(void)
@@ -23,6 +27,7 @@ void WrongPassTracker(void)
     else
     {
         disableTimer();
+        wrongAttempts = 0;
     }
 }
 
@@ -32,30 +37,32 @@ void IncrementTime(void)
     {
         timeSec++;
         time = 0;
-        if (timeSec >= 31)
-        {
-            timeSec = 0;
-        }
     }
 }
 
 void StartTimer(void)
 {
     //toggles start bit
-    *(TIMER_CONTROL) = 4;
+    *(TIMER_CONTROL) = 0b100;
 }
 
 void disableTimer(void)
 {
+    InitTimer();
     StartTimer(); //starts the timer
     while (timeSec < 30)
+    {
+        IncrementTime();
+        TimerCountDown();
         YouEnteredTheWrongPassIdiot(); //30 second lock out in the while loop
+    }
+    timeSec = 0;
 }
 
-void InitTimer(int interval)
+void InitTimer(void)
 {
-    *(TIMER_LVL) = interval;
-    *(TIMER_LVH) = interval >> 16;
+    *(TIMER_LVL) = 0x4240;
+    *(TIMER_LVH) = 0xF;
 }
 
 int Exponent(int base, int exponent)
