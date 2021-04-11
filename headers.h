@@ -21,6 +21,7 @@ extern volatile int *TIMER;
 extern volatile int *TIMER_CONTROL;
 extern volatile int *TIMER_LVL;
 extern volatile int *TIMER_LVH;
+extern volatile int *LEDS;
 
 //address for switch bank
 extern volatile int *SWITCH_BANK;
@@ -40,3 +41,5 @@ void UpdateDisplay(int);
 void DisplaySetPass();
 void DisplayWrongPass();
 void AccessGranted();
+void WrongPassTracker();
+void DisableTimer();
