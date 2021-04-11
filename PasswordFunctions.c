@@ -1,9 +1,9 @@
 #include "headers.h"
 
 
-int CheckPassword(int inputPassword, int *passwordPointer)
+int CheckPassword(void)
 {
-    if (inputPassword == *passwordPointer)
+    if (passwordInput == password)
     {
         return 1;
     }
@@ -59,6 +59,7 @@ void DisplayHexCode(int input)
     *HEX0_ptr = lookUpTable[input] + (lookUpTable[input] << 8) + (lookUpTable[input] << 16) + (lookUpTable[input] << 24);
 
     *HEX4_ptr = lookUpTable[input] + (lookUpTable[input] << 8) + (lookUpTable[input] << 16) + (lookUpTable[input] << 24);
+    
 }
 
 void passManager(int *passPtr)

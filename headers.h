@@ -11,6 +11,7 @@ extern volatile int wrongAttempts;
 extern volatile int buttonDown[32]; // edges and levels
 extern volatile int buttonUp[32];
 extern volatile int buttonPushed[32];
+extern volatile int state;
 
 extern volatile int *HEX_SEC_HUND; //hex 0-3
 extern volatile int *HEX_MINS;     //hex 4-5
@@ -28,7 +29,7 @@ extern volatile int *SWITCH_BANK;
 
 // prototyping function calls
 void ChangePassword();
-int CheckPassword(int, int*);
+int CheckPassword(void);
 void ClearPassword();
 void SetPassword(int, int);
 void InputPassword(int, int);
@@ -43,3 +44,7 @@ void DisplayWrongPass();
 void AccessGranted();
 void WrongPassTracker();
 void DisableTimer();
+void ShortDelay(void);
+void DisplayLocked(void);
+void ShortDelay(void);
+void DisplayLocked(void);
