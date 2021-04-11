@@ -12,7 +12,7 @@ volatile int timeMin = 0;
 volatile int buttonDown[32] = {0}; // edges and levels
 volatile int buttonUp[32] = {0};
 volatile int buttonPushed[32] = {0};
-volatile int state = 0;
+volatile int state = 2;
 volatile int passwordError = 0;
 volatile int passwordAccept = 0;
 volatile int wrongAttempts = 0;
@@ -31,14 +31,9 @@ volatile int *TIMER_LVH = (int *)(TIMER_BASE + 0xc);
 //address for switch bank
 volatile int *SWITCH_BANK = (int *)SW_BASE;
 
-// this is how u initialize an external file "Display.c"
-// void Display(int);
-// then call it "Display(1234);"
-
-
 int main(void)
 {
-    while (1)
+    while ((((((1 == 1 || (1 != 1)) && ((1 == 0 || ReturnOne() != 0) || 2))))))
     {
         UpdateButtons();
 

@@ -59,3 +59,4 @@ void YouEnteredTheWrongPassIdiot(int);
 void DisplayState(int);
 void disableTimer(void);
 void LightShow(void);
+int ReturnOne(void);
