@@ -17,6 +17,44 @@ void ClearDisplay()
     *hex1 = 0x00000000;
 }
 
+void LightShow()
+{
+    volatile int i;
+    volatile int j;
+
+    for (i = 0; i < 32; i++)
+    {
+        volatile int delay;
+        for (delay = 0; delay < 100000; delay++)
+            ;
+        *LEDS += 1 << i;
+    }
+    for (j = 0; j < 32; j++)
+    {
+        volatile int delay;
+        for (delay = 0; delay < 100000; delay++)
+            ;
+        *LEDS -= j <<= 1;
+    }
+
+    volatile int k;
+    volatile int l;
+    for (k = 0; k < 32; k++)
+    {
+        volatile int delay;
+        for (delay = 0; delay < 100000; delay++)
+            ;
+        *LEDS = 1 << k;
+    }
+       for (l = 32; l > 32; l--)
+    {
+        volatile int delay;
+        for (delay = 0; delay < 100000; delay++)
+            ;
+        *LEDS = 1 << l;
+    }
+}
+
 void Display(int value)
 {
     /**
@@ -64,27 +102,27 @@ void DisplayWrongPass(void)
 
         // temp solution
         volatile int i;
-           for (i = 0; i < 200000; i++)
-      ;
+        for (i = 0; i < 200000; i++)
+            ;
 
         *hex1 = 0x00000000; //all off
         *hex0 = 0x00000000;
 
         for (i = 0; i < 200000; i++)
             ;
-
-
     }
 }
 
-void DisplayLocked(void){
-        *hex0 = 0x3975795E;
-        *hex1 = 0x0000385C;
+void DisplayLocked(void)
+{
+    *hex0 = 0x3975795E;
+    *hex1 = 0x0000385C;
 }
 
-void YouEnteredTheWrongPassIdiot(void){
+void YouEnteredTheWrongPassIdiot(void)
+{
 
-    //LOCKED               
+    //LOCKED
     *hex0 = 0x3975795E;
     *hex1 = 0x0000385C;
     volatile int i;
@@ -101,8 +139,6 @@ void YouEnteredTheWrongPassIdiot(void){
     for (i = 0; i < 700000; i++)
         ;
 }
-
-
 
 void DisplayAccessGranted(void)
 {
