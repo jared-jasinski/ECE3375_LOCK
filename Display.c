@@ -19,9 +19,7 @@ void ClearDisplay()
 
 void LightShow()
 {
-    int i;
-    for (i = 0; i < 4; i++)
-    {
+    
         volatile int k;
         volatile int l;
 
@@ -39,7 +37,6 @@ void LightShow()
                 ;
             *LEDS = 1 << l;
         }
-    }
 }
 
 void Display(int value)
