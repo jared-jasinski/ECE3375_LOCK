@@ -12,7 +12,7 @@ volatile int timeMin = 0;
 volatile int buttonDown[32] = {0}; // edges and levels
 volatile int buttonUp[32] = {0};
 volatile int buttonPushed[32] = {0};
-volatile int state = 0;
+volatile int state = 2;
 
 volatile int *HEX_SEC_HUND = (int *)HEX3_HEX0_BASE; //hex 0-3
 volatile int *HEX_MINS = (int *)HEX5_HEX4_BASE;     //hex 4-5
@@ -41,22 +41,43 @@ int main(void)
     InitTimer(1000000);
     while (1)
     {
+        UpdateButtons();
+
         // locked state
         if (state == 0)
         {
+
         }
+
         // unlocked
         else if (state == 1)
         {
         }
+
         // reset password state
         else if (state == 2)
         {
+            if (CountDigits(GetPasswordInput()) == 8) {
+                password = passwordInput;
+                passwordInput = 0;
+                ShortDelay();
+                state = 0;
+            }
+            volatile int i;
+            for (i = 0; i < 9; i++)
+            {
+                if (buttonDown[i])
+                {
+                    UpdateDisplay(i + 1);
+                }
+            }
         }
+
         // timeout state
         else if (state == 3)
         {
         }
+
         DisplayState(state);
     }
     return 0;
@@ -64,18 +85,26 @@ int main(void)
 
 void DisplayState(int state)
 {
+
     // locked state
     if (state == 0)
     {
+        if (passwordInput == 0) Display(42069);
+        else Display(passwordInput);
     }
+
     // unlocked
     else if (state == 1)
     {
     }
+
     // reset password state
     else if (state == 2)
     {
+        if (passwordInput == 0) DisplaySetPass();
+        else Display(passwordInput);
     }
+
     // timeout state
     else if (state == 3)
     {

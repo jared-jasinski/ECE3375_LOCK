@@ -44,3 +44,4 @@ void DisplayWrongPass();
 void AccessGranted();
 void WrongPassTracker();
 void DisableTimer();
+void ShortDelay(void);

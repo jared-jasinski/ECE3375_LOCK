@@ -68,3 +68,10 @@ int Exponent(int base, int exponent)
     }
     return result;
 }
+
+void ShortDelay(void)
+{
+    volatile int i;
+    for (i = 0; i < 1000000; i++)
+        ;
+}
