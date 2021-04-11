@@ -12,7 +12,7 @@ volatile int timeMin = 0;
 volatile int buttonDown[32] = {0}; // edges and levels
 volatile int buttonUp[32] = {0};
 volatile int buttonPushed[32] = {0};
-volatile int state = 1;
+volatile int state = 0;
 volatile int passwordError = 0;
 volatile int passwordAccept = 0;
 volatile int wrongAttempts = 0;
@@ -35,17 +35,9 @@ volatile int *SWITCH_BANK = (int *)SW_BASE;
 // void Display(int);
 // then call it "Display(1234);"
 
-void Display(int);
-void InputPassword(int, int);
-int readButtons();
-void DisplayState(int);
-void WrongPassTracker(void);
-void disableTimer(void);
-void LightShow(void);
 
 int main(void)
 {
-    InitTimer(1000000);
     while (1)
     {
         UpdateButtons();
@@ -118,11 +110,6 @@ int main(void)
             }
         }
 
-        // timeout state
-        else if (state == 3)
-        {
-        }
-
         DisplayState(state);
     }
     return 0;
@@ -159,10 +146,5 @@ void DisplayState(int state)
             DisplaySetPass();
         else
             Display(passwordInput);
-    }
-
-    // timeout state
-    else if (state == 3)
-    {
     }
 }

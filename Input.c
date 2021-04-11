@@ -70,6 +70,7 @@ int buttonOut(int in)
     {
         return 10;
     }
+    return 0;
 }
 
 int CountDigits(int n)
@@ -88,8 +89,8 @@ int CountDigits(int n)
 
 int readIn(void)
 {
-    volatile int *buttons = KEY_BASE; // pointer pointing to the buttons
-    int output;
+    volatile int *buttons = (int *)KEY_BASE; // pointer pointing to the buttons
+    int output = 0;
 
     volatile int DELAY_LENGTH = 500000;
     volatile int delay_count;
@@ -103,7 +104,7 @@ int readIn(void)
 int return8(int temp)
 {
     int in = readIn();
-    int prev;
+    // int prev;
 
     while (in == 0)
     {

@@ -32,8 +32,8 @@ void changePass(int *passPtr)
 void DisplayHexCode(int input)
 {
 
-    volatile int *HEX0_ptr = HEX3_HEX0_BASE;
-    volatile int *HEX4_ptr = HEX5_HEX4_BASE;
+    volatile int *HEX0_ptr = (int *)HEX3_HEX0_BASE;
+    volatile int *HEX4_ptr = (int *)HEX5_HEX4_BASE;
 
     volatile int lookUpTable[17] = {
         // same as Lab1
@@ -64,7 +64,7 @@ void DisplayHexCode(int input)
 
 void passManager(int *passPtr)
 {
-    volatile int *LED_ptr = 0xFF200000;
+    volatile int *LED_ptr =  (int *)0xFF200000;
     int mode = readIn();
     if (mode == 10)
     {
